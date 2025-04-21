@@ -29,14 +29,13 @@ centos_version=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release
 # 根据不同版本替换 yum 源
 case $centos_version in
     6)
-        curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS6-Base-163.repo
+        curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.cloud.tencent.com/repo/centos6_base.repo
         ;;
     7)
-        curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
+        curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.cloud.tencent.com/repo/centos7_base.repo
         ;;
     8)
-        echo "网易暂未提供 CentOS 8 官方镜像源配置文件，可使用其他镜像源。"
-        exit 1
+        curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.cloud.tencent.com/repo/centos8_base.repo
         ;;
     *)
         echo "不支持的 CentOS 版本: $centos_version"
@@ -44,14 +43,9 @@ case $centos_version in
         ;;
 esac
 
-# 检查 curl 命令是否执行成功
-if [ $? -ne 0 ]; then
-    echo "下载网易 Yum 源配置文件失败，请检查网络连接。"
-    exit 1
-fi
-
 # 清理并生成缓存
 yum clean all
 yum makecache
 
-echo "Yum 源已成功替换为网易源，并更新了缓存。"
+echo "Yum 源已成功替换为阿里云源，并更新了缓存。"
+    
