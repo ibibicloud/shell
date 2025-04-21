@@ -47,5 +47,5 @@ esac
 yum clean all
 yum makecache
 
-echo "Yum 源已成功替换为阿里云源，并更新了缓存。"
+echo "Yum 源已成功替换为腾讯云源，并更新了缓存。"
     
