@@ -21,7 +21,6 @@ cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 echo "已备份 SSH 配置文件到 /etc/ssh/sshd_config.bak"
 
 # 修改 SSH 端口
-sed -i "s/#Port 22/Port $new_port/" /etc/ssh/sshd_config
 sed -i "s/Port 22/Port $new_port/" /etc/ssh/sshd_config
 
 # 重新加载 SSH 服务
