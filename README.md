@@ -10,6 +10,11 @@ curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/yum_update_a
 curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/yum_update_tencent.sh && bash yum_update_tencent.sh
 ~~~
 
+### centos修改默认ssh端口号
+~~~
+curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/modify_ssh_port.sh && bash modify_ssh_port.sh
+~~~
+
 ### 宝塔面板-v7.7.0 第一步：Centos/Ubuntu/Debian安装命令 独立运行环境（py3.7.8）
 ~~~
 curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/bt_install.sh && bash bt_install.sh
