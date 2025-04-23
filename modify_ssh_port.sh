@@ -16,12 +16,16 @@ if ! [[ "$new_port" =~ ^[0-9]+$ ]]; then
     exit 1
 fi
 
-# 备份 SSH 配置文件
-cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
-echo "已备份 SSH 配置文件到 /etc/ssh/sshd_config.bak"
+# 获取当前时间
+current_time=$(date +"%Y%m%d%H%M%S")
 
-# 修改 SSH 端口
-sed -i "s/Port 22/Port $new_port/" /etc/ssh/sshd_config
+# 备份 SSH 配置文件，文件名加上时间戳
+backup_file="/etc/ssh/sshd_config.bak.$current_time"
+cp /etc/ssh/sshd_config "$backup_file"
+echo "已备份 SSH 配置文件到 $backup_file"
+
+# 修改 SSH 端口，使用更精确的正则匹配
+sed -i "s/^#*Port [0-9]\+/Port $new_port/" /etc/ssh/sshd_config
 
 # 重新加载 SSH 服务
 systemctl reload sshd
