@@ -349,7 +349,7 @@ Get_Versions(){
 }
 
 Install_Python_Lib(){
-	curl -Ss --connect-timeout 3 -m 60 https://cdn.jsdelivr.net/gh/ibibicloud/shell/install/pip_select.sh|bash
+	curl -Ss --connect-timeout 3 -m 60 https://raw.githubusercontent.com/ibibicloud/shell/master/install/pip_select.sh|bash
 	pyenv_path="/www/server/panel"
 	if [ -f $pyenv_path/pyenv/bin/python ];then
 	 	is_ssl=$($python_bin -c "import ssl" 2>&1|grep cannot)
@@ -483,9 +483,9 @@ Install_Bt(){
 		sleep 1
 	fi
 
-	wget -O /etc/init.d/bt https://cdn.jsdelivr.net/gh/ibibicloud/shell/install/src/bt6.init -T 10
-	wget -O /www/server/panel/install/public.sh https://cdn.jsdelivr.net/gh/ibibicloud/shell/install/public.sh -T 10
-	wget -O panel.zip https://cdn.jsdelivr.net/gh/ibibicloud/shell/install/src/panel-v6.zip -T 10
+	wget -O /etc/init.d/bt https://raw.githubusercontent.com/ibibicloud/shell/master/install/src/bt6.init -T 10
+	wget -O /www/server/panel/install/public.sh https://raw.githubusercontent.com/ibibicloud/shell/master/install/public.sh -T 10
+	wget -O panel.zip https://raw.githubusercontent.com/ibibicloud/shell/master/install/src/panel-v6.zip -T 10
 
 	if [ -f "${setup_path}/server/panel/data/default.db" ];then
 		if [ -d "/${setup_path}/server/panel/old_data" ];then
@@ -535,8 +535,8 @@ Install_Bt(){
 	chmod -R +x ${setup_path}/server/panel/script
 	ln -sf /etc/init.d/bt /usr/bin/bt
 	echo "${panelPort}" > ${setup_path}/server/panel/data/port.pl
-	wget -O /etc/init.d/bt https://cdn.jsdelivr.net/gh/ibibicloud/shell/install/src/bt7.init -T 10
-	wget -O /www/server/panel/init.sh https://cdn.jsdelivr.net/gh/ibibicloud/shell/install/src/bt7.init -T 10
+	wget -O /etc/init.d/bt https://raw.githubusercontent.com/ibibicloud/shell/master/install/src/bt7.init -T 10
+	wget -O /www/server/panel/init.sh https://raw.githubusercontent.com/ibibicloud/shell/master/install/src/bt7.init -T 10
 }
 
 Set_Bt_Panel(){

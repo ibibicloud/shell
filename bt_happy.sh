@@ -32,11 +32,11 @@ if [ -f ${plugin_file} ];then
     chattr -i /www/server/panel/data/plugin.json
     rm /www/server/panel/data/plugin.json
     cd /www/server/panel/data
-    wget https://cdn.jsdelivr.net/gh/ibibicloud/shell/json/plugin.json
+    wget https://raw.githubusercontent.com/ibibicloud/shell/master/json/plugin.json
     chattr +i /www/server/panel/data/plugin.json
 else
     cd /www/server/panel/data
-    wget https://cdn.jsdelivr.net/gh/ibibicloud/shell/json/plugin.json
+    wget https://raw.githubusercontent.com/ibibicloud/shell/master/json/plugin.json
     chattr +i /www/server/panel/data/plugin.json
 fi
 echo -e "插件商城开心结束."
@@ -48,11 +48,11 @@ if [ -f ${repair_file} ];then
     chattr -i /www/server/panel/data/repair.json
     rm /www/server/panel/data/repair.json
     cd /www/server/panel/data
-    wget https://cdn.jsdelivr.net/gh/ibibicloud/shell/json/repair.json
+    wget https://raw.githubusercontent.com/ibibicloud/shell/master/json/repair.json
     chattr +i /www/server/panel/data/repair.json
 else
     cd /www/server/panel/data
-    wget https://cdn.jsdelivr.net/gh/ibibicloud/shell/json/repair.json
+    wget https://raw.githubusercontent.com/ibibicloud/shell/master/json/repair.json
     chattr +i /www/server/panel/data/repair.json
 fi
 echo -e "文件防修改结束."
