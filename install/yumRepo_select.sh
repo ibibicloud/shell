@@ -1,6 +1,7 @@
 #!/bin/bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
+
 get_Yum_Repo(){
 	nodes=(http://mirrors.cloud.tencent.com/repo/centos7_base.repo http://mirrors.aliyun.com/repo/Centos-7.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo https://mirrors.tuna.tsinghua.edu.cn/help/centos/index.html)
 	i=1

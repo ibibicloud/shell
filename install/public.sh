@@ -72,6 +72,7 @@ GetCpuStat(){
 		cpuCore=$((${cpuInfo}-1))
 	fi
 }
+
 GetPackManager(){
 	if [ -f "/usr/bin/yum" ] && [ -f "/etc/yum.conf" ]; then
 		PM="yum"
@@ -107,6 +108,7 @@ send_check(){
 	NODE_URL=""
 	exit 0;
 }
+
 init_check(){
 	CRACK_URL=(oss.yuewux.com);
 	for url in ${CRACK_URL[@]};
@@ -120,6 +122,7 @@ init_check(){
 		fi
 	done
 }
+
 GetSysInfo(){
 	if [ "${PM}" = "yum" ]; then
 		SYS_VERSION=$(cat /etc/redhat-release)

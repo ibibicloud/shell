@@ -7,6 +7,7 @@ if [ -d "$pyenv_bin" ];then
 fi
 export PATH
 LANG=en_US.UTF-8
+
 get_PIP_URL(){
 	nodes=(https://mirrors.tencent.com/pypi/simple https://pypi.doubanio.com/simple https://mirrors.aliyun.com/pypi/simple https://pypi.tuna.tsinghua.edu.cn/simple https://pypi.org/simple);
 	i=1;
