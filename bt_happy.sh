@@ -1,64 +1,41 @@
 #!/bin/bash
-LANG=en_US.UTF-8
 
-echo "
-+----------------------------------------------------------------------
-| Bt-WebPanel-Happy FOR CentOS
-+----------------------------------------------------------------------
-| 本脚本用于宝塔面板v7.7版本的一键开心，因为脚本造成的问题请自行负责！
-+----------------------------------------------------------------------
-"
-while [ "$go" != 'y' ] && [ "$go" != 'n' ]
-do
-	read -p "请确认你已经安装的版本是7.7，请确认你将开心的宝塔面板用于学习！(y/n): " go;
-done
+# 定义文本背景颜色变量
+BG_YELLOW='\e[43m'
 
-if [ "$go" == 'n' ];then
-	exit;
+# 恢复默认格式
+NC='\e[0m'
+
+# 检查是否为 root 用户
+if [ "$EUID" -ne 0 ]; then
+    echo -e "${BG_YELLOW}请以 root 用户身份运行此脚本。${NC}"
+    exit 1
 fi
 
-#修改强制登录开始
+if [ ! -d /www/server/panel ] || [ ! -f /etc/init.d/bt ];then
+    echo -e "${BG_YELLOW}服务器未安装宝塔面板。${NC}"
+    exit 1
+fi
+
+echo -e "${BG_YELLOW}宝塔Linux面板优化脚本，适用版本：v7.7。${NC}"
+
+# 修改强制登录
 sed -i "s|if (bind_user == 'True') {|if (bind_user == 'REMOVED') {|g" /www/server/panel/BTPanel/static/js/index.js
 rm -rf /www/server/panel/data/bind.pl
-#修改强制登录结束
-echo -e "修改强制登陆中..."
-sleep 2
-echo -e "修改强制登陆结束."
-sleep 2
-echo -e "插件商城开心开始..."
-#判断plugin.json文件是否存在,存在删除之后再下载,不存在直接下载
-plugin_file="/www/server/panel/data/plugin.json"
-if [ -f ${plugin_file} ];then
-    chattr -i /www/server/panel/data/plugin.json
-    rm /www/server/panel/data/plugin.json
-    cd /www/server/panel/data
-    wget https://raw.githubusercontent.com/ibibicloud/shell/master/json/plugin.json
-    chattr +i /www/server/panel/data/plugin.json
-else
-    cd /www/server/panel/data
-    wget https://raw.githubusercontent.com/ibibicloud/shell/master/json/plugin.json
-    chattr +i /www/server/panel/data/plugin.json
-fi
-echo -e "插件商城开心结束."
-sleep 3
-echo -e "文件防修改开始..."
-#判断repair.json文件是否存在,存在删除之后再下载,不存在直接下载
-repair_file="/www/server/panel/data/repair.json"
-if [ -f ${repair_file} ];then
-    chattr -i /www/server/panel/data/repair.json
-    rm /www/server/panel/data/repair.json
-    cd /www/server/panel/data
-    wget https://raw.githubusercontent.com/ibibicloud/shell/master/json/repair.json
-    chattr +i /www/server/panel/data/repair.json
-else
-    cd /www/server/panel/data
-    wget https://raw.githubusercontent.com/ibibicloud/shell/master/json/repair.json
-    chattr +i /www/server/panel/data/repair.json
-fi
-echo -e "文件防修改结束."
-sleep 3
-     /etc/init.d/bt restart 	
-sleep 3
-    bt default
-sleep 2 
-echo -e "宝塔面板开心结束！"
+echo -e "${BG_YELLOW}修改强制登陆结束。${NC}"
+
+# 锁死plugin.json
+chattr +i /www/server/panel/data/plugin.json
+echo -e "${BG_YELLOW}插件商城开心结束。${NC}"
+
+# 锁死repair.json
+chattr +i /www/server/panel/data/repair.json
+echo -e "${BG_YELLOW}文件防修改结束。${NC}"
+
+# 重启宝塔面板
+/etc/init.d/bt restart 	
+
+# 输出宝塔面板默认账号密码
+bt default
+
+echo -e "${BG_YELLOW}宝塔面板开心结束。${NC}"
