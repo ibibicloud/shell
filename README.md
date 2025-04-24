@@ -2,17 +2,17 @@
 
 ### centos更新yum源为阿里云源
 ~~~
-curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/yum_set_aliyun.sh && bash yum_set_aliyun.sh
+curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/set_yum_aliyun.sh && bash set_yum_aliyun.sh
 ~~~
 
 ### centos更新yum源为腾讯云源
 ~~~
-curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/yum_set_tencent.sh && bash yum_set_tencent.sh
+curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/set_yum_tencent.sh && bash set_yum_tencent.sh
 ~~~
 
 ### centos修改默认ssh端口号
 ~~~
-curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/modify_ssh_port.sh && bash modify_ssh_port.sh
+curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/set_ssh_port.sh && bash set_ssh_port.sh
 ~~~
 
 ### 宝塔面板-v7.7.0 第一步：Centos/Ubuntu/Debian安装命令 独立运行环境（py3.7.8）
