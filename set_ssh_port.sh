@@ -13,7 +13,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # 提示用户输入新的 SSH 端口，默认端口为 2233
-read -p "${BG_YELLOW}请输入新的 SSH 端口（默认: 2233）: ${NC}" new_port
+read -p "请输入新的 SSH 端口（默认: 2233）: " new_port
 new_port=${new_port:-2233}
 
 # 检查输入的端口是否为有效的整数
