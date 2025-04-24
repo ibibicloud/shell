@@ -1,7 +1,13 @@
 #!/bin/bash
 
+# 检查是否为 root 用户
+if [ "$(id -u)" -ne 0 ]; then
+    echo "请以 root 用户身份运行此脚本。"
+    exit 1
+fi
+
 # 定义备份目录
-backup_dir="/etc/yum.repos.d/backup_$(date +%Y%m%d%H%M%S)"
+backup_dir="/etc/yum.repos.d/backup_$(date +%Y-%m-%d_%H:%M:%S)"
 
 # 创建备份目录
 mkdir -p "$backup_dir"
@@ -11,9 +17,9 @@ cp /etc/yum.repos.d/*.repo "$backup_dir"
 
 # 检查备份是否成功
 if [ $? -eq 0 ]; then
-    echo "Yum 源备份成功，备份目录为: $backup_dir"
+    echo "原 yum 源配置备份成功，备份目录为: $backup_dir。"
 else
-    echo "Yum 源备份失败"
+    echo "原 yum 源配置备份失败。"
     exit 1
 fi
 
@@ -26,26 +32,16 @@ fi
 # 确定 CentOS 版本
 centos_version=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release))
 
-# 根据不同版本替换 yum 源
-case $centos_version in
-    6)
-        curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.cloud.tencent.com/repo/centos6_base.repo
-        ;;
-    7)
-        curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.cloud.tencent.com/repo/centos7_base.repo
-        ;;
-    8)
-        curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.cloud.tencent.com/repo/centos8_base.repo
-        ;;
-    *)
-        echo "不支持的 CentOS 版本: $centos_version"
-        exit 1
-        ;;
-esac
+# 替换 yum 源
+curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.cloud.tencent.com/repo/centos7_base.repo
+echo "CentOS 7.* yum 源已成功替换为腾讯云源。"
+
+# 处理 epel.repo 文件
+curl -o /etc/yum.repos.d/epel.repo https://mirrors.cloud.tencent.com/repo/epel-7.repo
+echo "CentOS 7.* epel 源已成功替换为腾讯云源。"
 
 # 清理并生成缓存
 yum clean all
 yum makecache
-
-echo "Yum 源已成功替换为腾讯云源，并更新了缓存。"
+echo "清理并更新了 yum 缓存。"
     
