@@ -34,28 +34,11 @@ centos_version=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release
 
 # 替换 yum 源
 curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-echo "yum 源已成功替换为阿里云源。"
-
-# 安装 epel-release
-yum install -y epel-release
+echo "CentOS 7.* yum 源已成功替换为阿里云源。"
 
 # 处理 epel.repo 文件
-if [ -f "/etc/yum.repos.d/epel.repo" ]; then
-    # 备份原有的 epel.repo 文件到备份目录
-    cp /etc/yum.repos.d/epel.repo "$backup_dir"
-    # 替换 epel.repo 文件中的镜像源为阿里云镜像源
-    sed -i 's|^baseurl=.*|baseurl=https://mirrors.aliyun.com/epel/$releasever/$basearch/|' /etc/yum.repos.d/epel.repo
-    sed -i 's|^metalink=.*|#metalink|' /etc/yum.repos.d/epel.repo
-fi
-
-# 处理 epel-testing.repo 文件
-if [ -f "/etc/yum.repos.d/epel-testing.repo" ]; then
-    # 备份原有的 epel-testing.repo 文件到备份目录
-    cp /etc/yum.repos.d/epel-testing.repo "$backup_dir"
-    # 替换 epel-testing.repo 文件中的镜像源为阿里云镜像源
-    sed -i 's|^baseurl=.*|baseurl=https://mirrors.aliyun.com/epel/testing/$releasever/$basearch/|' /etc/yum.repos.d/epel-testing.repo
-    sed -i 's|^metalink=.*|#metalink|' /etc/yum.repos.d/epel-testing.repo
-fi
+curl -o /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo
+echo "CentOS 7.* epel 源已成功替换为阿里云源。"
 
 # 清理并生成缓存
 yum clean all
