@@ -2,12 +2,12 @@
 
 ### centos更新yum源为阿里云源
 ~~~
-curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/yum_update_aliyun.sh && bash yum_update_aliyun.sh
+curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/yum_set_aliyun.sh && bash yum_set_aliyun.sh
 ~~~
 
 ### centos更新yum源为腾讯云源
 ~~~
-curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/yum_update_tencent.sh && bash yum_update_tencent.sh
+curl -sSO https://raw.githubusercontent.com/ibibicloud/shell/master/yum_set_tencent.sh && bash yum_set_tencent.sh
 ~~~
 
 ### centos修改默认ssh端口号
