@@ -43,7 +43,7 @@ curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-
 echo -e "${BG_YELLOW}CentOS 7.* yum 源已成功替换为阿里云源。${NC}"
 
 # 处理 epel.repo 文件
-curl -o /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo
+curl -o /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
 echo -e "${BG_YELLOW}CentOS 7.* epel 源已成功替换为阿里云源。${NC}"
 
 # 清理并生成缓存

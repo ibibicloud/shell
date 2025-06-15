@@ -39,11 +39,11 @@ fi
 centos_version=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release))
 
 # 替换 yum 源
-curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.cloud.tencent.com/repo/centos7_base.repo
+curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo
 echo -e "${BG_YELLOW}CentOS 7.* yum 源已成功替换为腾讯云源。${NC}"
 
 # 处理 epel.repo 文件
-curl -o /etc/yum.repos.d/epel.repo https://mirrors.cloud.tencent.com/repo/epel-7.repo
+curl -o /etc/yum.repos.d/epel.repo http://mirrors.cloud.tencent.com/repo/epel-7.repo
 echo -e "${BG_YELLOW}CentOS 7.* epel 源已成功替换为腾讯云源。${NC}"
 
 # 清理并生成缓存
